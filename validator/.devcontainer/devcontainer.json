@@ -1,0 +1,23 @@
+{
+  "name": "dpdk-forwarder",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "runArgs": [
+    "--privileged"
+  ],
+  "workspaceFolder": "/workspace",
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+  ],
+  "containerEnv": {
+    "IFACE_IN": "dpdk0",
+    "IFACE_OUT": "dpdk1",
+    "CORELIST": "0",
+    "PORT_IN": "0",
+    "PORT_OUT": "1",
+    "CONFIG_PATH": "/workspace/config/mac.conf",
+    "KEY_PATH": "/workspace/config/keys.json"
+  },
+  "postCreateCommand": "/workspace/setup.sh"
+}
